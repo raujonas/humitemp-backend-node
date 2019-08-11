@@ -1,10 +1,10 @@
 import bodyParser from "body-parser";
 import express from "express";
 
-const index = express();
+const app = express();
 
 const port = 1234;
 
-index.listen(port, () => {
+app.listen(port, () => {
     console.log("Server up and running on port " + port);
 });
