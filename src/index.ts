@@ -1,7 +1,10 @@
 import bodyParser from "body-parser";
 import express from "express";
+import humiTempRouter from "./routes/humitemp.route";
 
-const app = express();
+const app: express.Application = express();
+
+app.use("/humitemp", humiTempRouter);
 
 const port = 1234;
 
