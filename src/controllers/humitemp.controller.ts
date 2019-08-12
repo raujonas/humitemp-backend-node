@@ -13,6 +13,7 @@ export let getLatest = (req: Request, res: Response) => {
 };
 
 export let postLatest = (req: Request, res: Response) => {
+    console.log(req.body);
     latestHumiTemp = new HumiTemp(req.body.humi, req.body.temp, req.body.time);
     res.sendStatus(200);
 };

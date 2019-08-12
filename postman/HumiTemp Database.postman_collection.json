@@ -1,0 +1,146 @@
+{
+	"info": {
+		"_postman_id": "4426cdc8-2502-4053-a3ba-3002b9d46c94",
+		"name": "HumiTemp Database",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Post new humiTempObject",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "dfa66650-f662-4552-a964-f17a0321a965",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/x-www-form-urlencoded",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "humi",
+							"value": "{{humi}}",
+							"type": "text"
+						},
+						{
+							"key": "temp",
+							"value": "{{temp}}",
+							"type": "text"
+						},
+						{
+							"key": "time",
+							"value": "{{$timestamp}}",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:1234/humitemp/latest?",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"humitemp",
+						"latest"
+					],
+					"query": [
+						{
+							"key": "humi",
+							"value": "{{humi}}",
+							"disabled": true
+						},
+						{
+							"key": "temp",
+							"value": "{{temp}}",
+							"disabled": true
+						},
+						{
+							"key": "time",
+							"value": "{{time}}",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get latest humiTempObject",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:1234/humitemp/latest",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"humitemp",
+						"latest"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "133e93d1-d6d2-47ac-8830-a8b5230dc9b6",
+				"type": "text/javascript",
+				"exec": [
+					"pm.environment.set(\"humi\", _.random(0,100));",
+					"pm.environment.set(\"temp\", _.random(0,40));"
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "e42194df-d44c-4620-8e97-3403001085ce",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"id": "2f7f1954-232d-4877-a4bc-c40143ef311f",
+			"key": "humi",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "53960329-96e4-4a5d-ab4e-01662644e211",
+			"key": "temp",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"id": "07bcf0e8-c8cf-4869-9e10-21fc3ae32392",
+			"key": "time",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
