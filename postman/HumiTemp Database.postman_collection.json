@@ -98,6 +98,25 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Get all humiTempObjects",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:1234/humitemp/latest",
+					"host": [
+						"localhost"
+					],
+					"port": "1234",
+					"path": [
+						"humitemp",
+						"latest"
+					]
+				}
+			},
+			"response": []
 		}
 	],
 	"event": [
@@ -125,19 +144,19 @@
 	],
 	"variable": [
 		{
-			"id": "2f7f1954-232d-4877-a4bc-c40143ef311f",
+			"id": "d137171d-db2f-461e-bedd-06c5a5d9c997",
 			"key": "humi",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "53960329-96e4-4a5d-ab4e-01662644e211",
+			"id": "229704f3-7438-487e-89c0-5be0b7df7485",
 			"key": "temp",
 			"value": "",
 			"type": "string"
 		},
 		{
-			"id": "07bcf0e8-c8cf-4869-9e10-21fc3ae32392",
+			"id": "8889fbf7-7d41-4c23-b7ae-47628d29eb14",
 			"key": "time",
 			"value": "",
 			"type": "string"

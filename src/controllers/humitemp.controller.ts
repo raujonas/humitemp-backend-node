@@ -2,20 +2,34 @@ import {Request, Response} from "express";
 import HumiTemp from "../models/humitemp.model";
 
 export let allHumiTemps = (req: Request, res: Response) => {
-    const humiTemps = HumiTemp.find((err: any, books: any) => {
+    HumiTemp.find((err: any, humiTemps: any) => {
         if (err) {
             res.send("Error while finding all humitemps");
         } else {
             res.send(humiTemps);
         }
     });
-    res.send("Returns all HumiTemps");
 };
 
 export let latestHumiTemp = (req: Request, res: Response) => {
-    res.send("Returns latest HumiTemp");
+    HumiTemp.findOne().sort({ field: "asc", _id: -1 }).limit(1).exec((err: any, latest: any) => {
+        if (err) {
+            res.send("Error while finding all humitemps");
+        } else {
+            res.send(latest);
+        }
+    });
 };
 
 export let addHumiTemp = (req: Request, res: Response) => {
-    res.send("Returns one HumiTemp");
+    const newHumiTemp = new HumiTemp(req.body);
+
+    newHumiTemp.save((err: any) => {
+        if (err) {
+            res.send("Error while finding all humitemps");
+        } else {
+            res.send(newHumiTemp);
+            console.log(newHumiTemp);
+        }
+    });
 };
