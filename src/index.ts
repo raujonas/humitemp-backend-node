@@ -7,7 +7,7 @@ import humiTempRouter from "./routes/humitemp.route";
 dotenv.config();
 
 mongoose.connect("mongodb+srv://" + process.env.dbuser + ":" + process.env.dbpw +
-    "@authcluster-pezki.mongodb.net/test?retryWrites=true&w=majority", (err: any) => {
+    "@authcluster-pezki.mongodb.net/humitemp?retryWrites=true&w=majority", (err: any) => {
     if (err) {
        console.log(err.message);
     } else {
@@ -21,7 +21,7 @@ app.use(bodyParser.urlencoded({extended: true}));
 
 app.use("/humitemp", humiTempRouter);
 
-const port = 1234;
+const port = 8080;
 
 app.listen(port, () => {
     console.log("Server up and running on port " + port);

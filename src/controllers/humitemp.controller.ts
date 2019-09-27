@@ -14,7 +14,7 @@ export let allHumiTemps = (req: Request, res: Response) => {
 export let latestHumiTemp = (req: Request, res: Response) => {
     HumiTemp.findOne().sort({ field: "asc", _id: -1 }).limit(1).exec((err: any, latest: any) => {
         if (err) {
-            res.send("Error while finding all humitemps");
+            res.send("Error while finding latest humitemp");
         } else {
             res.send(latest);
         }
@@ -26,7 +26,8 @@ export let addHumiTemp = (req: Request, res: Response) => {
 
     newHumiTemp.save((err: any) => {
         if (err) {
-            res.send("Error while finding all humitemps");
+            console.log(err);
+            res.send("Error while adding new humitemp");
         } else {
             res.send(newHumiTemp);
             console.log(newHumiTemp);
