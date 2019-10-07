@@ -1,6 +1,12 @@
 import {Document} from "mongoose";
 
 export interface IUser extends Document {
-    email?: string;
-    password?: string;
+    hash: string;
+    email: string;
+    name: string;
+    salt: string;
+
+    setPassword(password: string): void;
+    validPassword(password: string): boolean;
+    generateJwt(): string;
 }

@@ -1,5 +1,5 @@
 import {Request, Response} from "express";
-import HumiTemp from "../models/humitemp.model";
+import {HumiTemp} from "../models/humitemp.model";
 
 export let allHumiTemps = (req: Request, res: Response) => {
     HumiTemp.find((err: any, humiTemps: any) => {

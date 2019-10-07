@@ -1,26 +1,40 @@
 import {Request, Response} from "express";
-import jwt from "jsonwebtoken";
+import passport from "passport";
+import "../config/passport.config";
+import {User} from "../models/user.model";
 
-export let authenticate = (req: Request, res: Response) => {
-    if (req.body) {
-        let user = req.body;
-        console.log(user);
+export let register = (req: Request, res: Response) => {
+    const user = new User(req.body);
 
-        //TODO: Verify user with hashed password
-        if (true == true) {
-            let token = jwt.sign(user, process.env.jwtsecret);
-            res.status(200).send({
-                signed_user: user,
-                token: token
+    user.setPassword(req.body.password);
+
+    console.log(user);
+
+    user.save((err: Error) => {
+        if (!err) {
+            res.status(200).json({
+                token: user.generateJwt()
             });
         } else {
-            res.status(403).send({
-                errorMessage: 'Authorisation required!'
-            });
+            res.status(404).json(err.message);
         }
-    } else {
-        res.status(403).send({
-            errorMessage: 'Please provide email and password'
-        });
-    }
+    });
+};
+
+export let login = (req: Request, res: Response) => {
+    passport.authenticate("local", (err, user, info) => {
+        if (err) {
+            res.status(404).json(err);
+            return;
+        }
+
+        if (user) {
+            res.status(200);
+            res.json({
+                token: user.generateJwt()
+            });
+        } else {
+            res.status(401).json(info);
+        }
+    })(req, res);
 };
